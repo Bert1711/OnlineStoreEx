@@ -1,5 +1,6 @@
 package com.zaroyan.onlinestoreex.services;
 
+import com.zaroyan.onlinestoreex.exceptions.OrderNotFoundException;
 import com.zaroyan.onlinestoreex.model.Order;
 import com.zaroyan.onlinestoreex.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class OrderService {
     }
 
     public Order getOrderById(Long id) {
-        return orderRepository.findById(id).orElse(null);
+        return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order not found"));
     }
 
     public List<Order> getAllOrders() {

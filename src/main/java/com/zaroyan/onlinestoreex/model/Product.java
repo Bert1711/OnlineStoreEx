@@ -25,16 +25,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     private String description;
 
-    @NotNull
-    @Min(0)
+    @NotNull(message = "Price is mandatory")
+    @Min(value = 0, message = "Price must be greater than to 0")
     private Double price;
 
-    @NotNull
-    @Min(0)
+    @NotNull(message = "Quantity in stock is mandatory")
+    @Min(value = 0, message = "Quantity in stock must be greater than or equal to 0")
     private Integer quantityInStock;
 }
